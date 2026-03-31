@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@300&family=Roboto&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-
+ 
   <style>
     tr:nth-child(1) ~ tr:nth-child(odd) {
       background-color: lightgray;
@@ -30,109 +30,169 @@
       font-weight: bold;
       padding: 10px;
     }
-    
   </style>
 </head>
-
+ 
 <body>
   <header>
     <nav>
       <a href="index.html#start">Table</a>
       <a href="index.html#input">Input</a>
       <a href="index.html#output">Output</a>
+      <a href="errorlogs.html">Error Logs</a>
     </nav>
     
     <h1 style="padding: 30px">Edgardo Javier D. Kasilag III - Lithium - Mar 2026 </h1>
   </header>
-
+ 
   <section id="table">
     <table> 
       <caption> Error Logs - place errors found in the table below</caption>
       <tr class="rColor">
         <th> item# </th> 
-        <th> code line#<br/>CSS or JS </th> 
+        <th> code line# / CSS or JS </th> 
         <th> Description</th>
         <th> Correction Done</th>
       </tr>
+ 
       <tr>
         <td> 1 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
+        <td> HTML – &lt;nav&gt; link </td> 
+        <td> href="#start" points to id="start" on an &lt;h2&gt; inside &lt;header&gt;, not the table section </td>
+        <td> Changed href to "#table" to correctly target &lt;section id="table"&gt; </td>
       </tr>
       <tr>
         <td> 2 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
+        <td> HTML – &lt;h2 id="start"&gt; </td> 
+        <td> id="start" is misplaced on the &lt;h2&gt; inside &lt;header&gt; instead of the target section </td>
+        <td> Removed id="start" from the &lt;h2&gt;; nav link corrected to href="#table" </td>
       </tr>
       <tr>
         <td> 3 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
+        <td> HTML – &lt;section id="output"&gt; &lt;h2&gt; </td> 
+        <td> &lt;h2 id="output"&gt; duplicates the parent section's own id="output", causing two elements with the same id </td>
+        <td> Removed id="output" from the &lt;h2&gt; tag </td>
       </tr>
       <tr>
         <td> 4 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
+        <td> HTML – &lt;table&gt; </td> 
+        <td> Missing &lt;thead&gt; wrapper around the header row and &lt;tbody&gt; around data rows </td>
+        <td> Wrapped the first &lt;tr&gt; in &lt;thead&gt; and all remaining &lt;tr&gt; rows in &lt;tbody&gt; </td>
       </tr>
       <tr>
         <td> 5 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
+        <td> HTML – &lt;button onclick&gt; </td> 
+        <td> Directly references x0.value, y0.value, x.value, y.value without document.getElementById() </td>
+        <td> Changed each to document.getElementById('x0').value, etc. </td>
       </tr>
       <tr>
         <td> 6 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
+        <td> HTML – &lt;!--- comment --&gt; </td> 
+        <td> Triple dash &lt;!--- is invalid HTML comment syntax </td>
+        <td> Changed to standard &lt;!-- double dash comment --&gt; </td>
       </tr>
       <tr>
         <td> 7 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
+        <td> HTML – footer &lt;a&gt; tags </td> 
+        <td> Block element &lt;div&gt; placed inside inline element &lt;a&gt; is invalid without display:block on the anchor </td>
+        <td> Added style="display:block" to each footer &lt;a&gt; tag </td>
       </tr>
       <tr>
         <td> 8 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
+        <td> HTML – &lt;script&gt; tag </td> 
+        <td> defer attribute is redundant when &lt;script&gt; is already at the bottom of &lt;body&gt; </td>
+        <td> Removed the defer attribute </td>
       </tr>
       <tr>
         <td> 9 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
+        <td> CSS – body </td> 
+        <td> font-family declared 3 times; only the last declaration (Roboto) takes effect </td>
+        <td> Merged into one: font-family: 'Open Sans', 'Poppins', 'Roboto', sans-serif </td>
       </tr>
       <tr>
         <td> 10 </td> 
-        <td> </td> 
-        <td> </td>
-        <td> </td>
+        <td> CSS – nav a :hover </td> 
+        <td> Space before :hover targets a child element of &lt;a&gt; on hover, not the &lt;a&gt; itself </td>
+        <td> Removed space: changed to nav a:hover </td>
+      </tr>
+      <tr>
+        <td> 11 </td> 
+        <td> CSS – nav a </td> 
+        <td> display: block causes nav links to stack vertically instead of appearing on one line </td>
+        <td> Changed to display: inline-block </td>
+      </tr>
+      <tr>
+        <td> 12 </td> 
+        <td> CSS – nav </td> 
+        <td> No position: fixed set; nav scrolls with the page content despite the requirement </td>
+        <td> Added position: fixed; top: 0; left: 0 to nav </td>
+      </tr>
+      <tr>
+        <td> 13 </td> 
+        <td> CSS – body </td> 
+        <td> No padding-top to offset the fixed nav, causing page content to hide underneath it </td>
+        <td> Added padding-top: 48px to body </td>
+      </tr>
+      <tr>
+        <td> 14 </td> 
+        <td> CSS – .point </td> 
+        <td> Missing position: absolute; JS-plotted points cannot be positioned inside #coordinatePlane </td>
+        <td> Added position: absolute to .point </td>
+      </tr>
+      <tr>
+        <td> 15 </td> 
+        <td> CSS – th, td, tr </td> 
+        <td> Applying border to &lt;tr&gt; has no visual effect; browsers ignore borders on tr elements </td>
+        <td> Removed tr from the selector; kept only th, td </td>
+      </tr>
+      <tr>
+        <td> 16 </td> 
+        <td> CSS – .twitter:hover </td> 
+        <td> Y-position is -54px while .facebook:hover uses -55px — inconsistent sprite row offset </td>
+        <td> Changed .twitter:hover Y-position to -55px to match the other icons </td>
+      </tr>
+      <tr>
+        <td> 17 </td> 
+        <td> JS – function plotPoint() </td> 
+        <td> No parameters declared despite being called with 4 arguments from the HTML button </td>
+        <td> Changed to function plotPoint(x0, y0, x, y) </td>
+      </tr>
+      <tr>
+        <td> 18 </td> 
+        <td> JS – in1.innerHTML / out1.innerHTML </td> 
+        <td> Directly references in1 and out1 by bare ID without document.getElementById() </td>
+        <td> Changed to document.getElementById('in1').innerHTML and document.getElementById('out1').innerHTML </td>
+      </tr>
+      <tr>
+        <td> 19 </td> 
+        <td> JS – point.styleleft / point.stylebottom </td> 
+        <td> styleleft and stylebottom are not valid properties; CSS properties require dot notation via style </td>
+        <td> Changed to point.style.left and point.style.bottom </td>
+      </tr>
+      <tr>
+        <td> 20 </td> 
+        <td> JS – plotPoint() </td> 
+        <td> No input validation; empty or non-numeric inputs produce NaN silently </td>
+        <td> Added if (isNaN(x) || isNaN(y) || isNaN(x0) || isNaN(y0)) return; at the start </td>
       </tr>
      
     </table>
     <hr>
   </section>
   
-   
-  <!--- anchors for socmed site are done with image sprites -->
+  <!-- anchors for socmed site are done with image sprites -->
   <footer>
-    <a href="https://facebook.com"> 
-    <div class="icon facebook"></div>
+    <a href="https://facebook.com" style="display:block"> 
+      <div class="icon facebook"></div>
     </a>
-    <a href="https://twitter.com">
-    <div class="icon twitter"></div>
+    <a href="https://twitter.com" style="display:block">
+      <div class="icon twitter"></div>
     </a>
-    <a href="https://github.com">
-    <div class="icon github"></div>
+    <a href="https://github.com" style="display:block">
+      <div class="icon github"></div>
     </a>
   </footer>
  
 </body>
-
+ 
 </html>
